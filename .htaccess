@@ -1,0 +1,84 @@
+#Error 404, guiar que pagina va mostra
+ErrorDocument 404 /404.php
+#Comprimir los archivos css, js, php, html y jpg, se comprimen DEFLATE que es
+#un formato de compresion mas compatible con navegadores, otro formato de compresion en
+#el servidor apache es el gzip pero no es muy compatible con navegadores
+<Files *.css>
+SetOutputFilter DEFLATE
+</Files>
+
+<Files *.js>
+SetOutputFilter DEFLATE
+</Files>
+
+<Files *.php>
+SetOutputFilter DEFLATE
+</Files>
+
+<Files *.html>
+SetOutputFilter DEFLATE
+</Files>
+
+<Files *.jpg>
+SetOutputFilter DEFLATE
+</Files>
+#aqui termina las lineas para comprimir la entrega de archivos
+
+#habilitar el cache de los elementos de la pagina por default
+<IfModule mod_expires.c>
+ ExpiresActive on
+ ExpiresDefault "access plus 1 month"
+ ExpiresByType text/html "access plus 1 month"
+ ExpiresByType application/x-javascript "access plus 1 month"
+ ExpiresByType image/x-ico "access plus 1 month"
+ ExpiresByType image/jpg "access plus 1 month"
+ ExpiresByType image/jpeg "access plus 1 month"
+ ExpiresByType image/gif "access plus 1 month"
+ ExpiresByType image/png "access plus 1 month"
+ ExpiresByType text/css "access plus 1 month"
+ ExpiresByType text/css "access plus 1 month"
+ ExpiresByType text/js "access plus 1 month"
+ ExpiresByType text/javascript "access plus 1 month"
+ ExpiresByType application/javascript "access plus 1 month"
+ </IfModule>
+
+#habilitar el cache de la pagina por tiempos
+# 1 YEAR
+<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav)$">
+Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# 1 WEEK
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+# 3 HOUR
+<FilesMatch "\.(txt|xml|js|css)$">
+Header set Cache-Control "max-age=10800"
+</FilesMatch>
+
+# NEVER CACHE - notice the extra directives
+<FilesMatch "\.(html|htm|php|cgi|pl)$">
+Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+</FilesMatch>
+
+ <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch "\.(bmp|css|flv|gif|ico|jpg|jpeg|js|pdf|png|svg|swf|tif|tiff)$">
+       Header set Last-Modified "Mon, 31 Aug 2009 00:00:00 GMT"
+		Header set Cache-Control "max-age=29030400, public"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+# Force no caching for dynamic files
+<filesMatch ".(php|cgi|pl|htm)$">
+ExpiresDefault A0
+Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+Header set Pragma "no-cache"
+</filesMatch>
+</ifModule>
