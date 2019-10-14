@@ -2,7 +2,6 @@
 //$link = mysqli_connect("localhost", "aa_000taq", "N-4-nRu?KAdX", "aa_000taq");
 $link = mysqli_connect("localhost", "root", "", "bd_testimonials");
 
-
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
