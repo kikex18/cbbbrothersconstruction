@@ -2,11 +2,11 @@
 	<div itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage">
 		<?php include('conexion.php');?>
 		<?php
-			$sql = "SELECT * FROM reviews ORDER BY rdate DESC" ;
+			$sql = "SELECT * FROM reviews ORDER BY id DESC";
 			$result=mysqli_query($link,$sql);
 			$total = mysqli_num_rows ($result);
 			$total_registro = $total;
-			$total_registro_mostrar = 5;
+			$total_registro_mostrar = 10;
 			$numero_paginas = ceil($total_registro / $total_registro_mostrar);
 			$pagina_actual = isset( $_GET['page']) ? $_GET['page'] : 1;
 			$paginacion_parametros =  $pagina_actual*$total_registro_mostrar - $total_registro_mostrar;
@@ -139,10 +139,39 @@
 
 								?> - <?php echo $row[5].'.0'; ?> </small></h3>
 								<em>
-									Date: <?php echo $row[3] ?><br>
+									Date: 
+									<?php 
+										if (empty($row[8])){
+											echo $row[3];
+										} else {
+											echo $row[8]; 
+										}
+									?>
+									<br>
 									Project: <strong><?php echo $row[2]; ?></strong>
 								</em>
-								<p class="mt-3 pb-0 mb-0"><?php echo $row[4] ?></p>
+								<p class="mt-3 pb-0 mb-0"><?php echo $row[4]; ?></p>
+								<p class="text-right" style="font-size: 13px !important; color: #a4a4a4;">Posted On
+								<?php
+										if ($row[7] == 'homeadvisor'){
+											?>
+												 <img src="https://img.icons8.com/color/38/000000/homeadvisor.png">
+											<?php
+										} else if ($row[7] == 'facebook'){
+											?>
+												<img src="https://img.icons8.com/color/38/000000/facebook.png">
+											<?php
+										} else if ($row[7] == 'google'){
+											?>
+												<img src="https://img.icons8.com/color/38/000000/google-logo.png">
+											<?php
+										} else if ($row[7] == 'webpage'){
+											?>
+												<img height="80px" src="images/favicon.png"/>
+											<?php
+										}
+									?>
+								</p>
 							</div>
 						<?php  }
 						mysqli_free_result($result);

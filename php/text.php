@@ -40,8 +40,8 @@ elseif ($page_name=='contact.php') {$page_name2="Contact";}
 	$Mail='cbbbrothers.co@gmail.com';$MailRef="mailto:".$Mail;
 	$Mail2='';$Mail2Ref="mailto:".$Mail2;
 	$Services='Residential Services';
-	$Payment='We Accept Cash, Checks, Credit Cards, PayPal, and Bank Deposits';
-	$PaymentMobile='We Accept Cash, Checks, CC,<br> PayPal, and Bank Deposits';
+	$Payment='We Accept Cash, Checks, Credit Cards and PayPal';
+	$PaymentMobile='We Accept Cash, Checks, CC and PayPal';
 	$Experience='13 Years of Experience';
 	$Experience2="";
 	$Schedule='Available 24/7';

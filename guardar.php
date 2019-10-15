@@ -31,7 +31,7 @@ if (!isset($_SESSION['token']) || $_SESSION['token'] != $_POST['token']) {
 
           die('<script language="javascript"> window.parent.alert("Please select a Star"); </script> <script language="javascript"> window.setTimeout( window.location.href="reviews.php",2000); </script>');
         }else{
-          $sql = "INSERT INTO `reviews` (name, city, project, rdate, review, start)VALUES ('$nombre', '$city', '$project', '$date', '$review', '$star')";
+          $sql = "INSERT INTO `reviews` (name, city, project, rdate, review, start, id, company, date)VALUES ('$nombre', '$city', '$project', '$date', '$review', '$star', '', 'webpage','');";
         }
         
         if ($link->query(strip_tags($sql)) === TRUE) {
